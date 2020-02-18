@@ -7,15 +7,18 @@ namespace ClearBank.DeveloperTest.Types
         public string _accountNumber;
         public decimal _balance;
         public AccountStatus _status;
-        public AllowedPaymentSchemes _allowedPaymentSchemes;
+        public PaymentScheme _allowedPaymentSchemes;
 
         public string AccountNumber => _accountNumber;
         public decimal Balance => _balance;
         public AccountStatus Status => _status;
-        public AllowedPaymentSchemes AllowedPaymentSchemes => _allowedPaymentSchemes;
 
-        public Account(string accountNumber, decimal balance, AccountStatus status, AllowedPaymentSchemes allowedPaymentSchemes)
+        public Account(string accountNumber, decimal balance, AccountStatus status, int allowedPaymentSchemes)
         {
+            if (allowedPaymentSchemes <= 0)
+            {
+                throw new ArgumentException($"AllowedPaymentSchemes  should be greater than 0. Actual {allowedPaymentSchemes}.", nameof(accountNumber));
+            }
             if (string.IsNullOrWhiteSpace(accountNumber))
             {
                 throw new ArgumentException("AccountNumber cannot not be empty or null.", nameof(accountNumber));
@@ -24,36 +27,25 @@ namespace ClearBank.DeveloperTest.Types
             _accountNumber = accountNumber;
             _balance = balance;
             _status = status;
-            _allowedPaymentSchemes = allowedPaymentSchemes;
+            _allowedPaymentSchemes = new PaymentScheme(allowedPaymentSchemes, accountNumber + "_scheme");
         }
         public void ProcessPayment(MakePaymentRequest request)
         {
-            if (!CanProcessPayment(request))
+            if (!request.IsApplicableTo(this))
             {
-                throw new InvalidOperationException("cannot process payment");
+                throw new InvalidOperationException("Cannot process payment.");
             }
             _balance -= request.Amount;
         }
 
         public bool CanProcessPayment(MakePaymentRequest request)
         {
-            bool result = false;
-            switch (request.PaymentScheme)
-            {
-                case PaymentScheme.Bacs:
-                    result = AllowedPaymentSchemes.HasFlag(AllowedPaymentSchemes.Bacs);
-                    break;
+            return request.IsApplicableTo(this);
+        }
 
-                case PaymentScheme.FasterPayments:
-                    result = AllowedPaymentSchemes.HasFlag(AllowedPaymentSchemes.FasterPayments) && this.Balance >= request.Amount;
-                    break;
-
-                case PaymentScheme.Chaps:
-                    result = AllowedPaymentSchemes.HasFlag(AllowedPaymentSchemes.Chaps) && Status == AccountStatus.Live;
-                    break;
-            }
-
-            return result;
+        public bool IsAllowedPaymentScheme(PaymentScheme paymentScheme)
+        {
+            return this._allowedPaymentSchemes.Has(paymentScheme);
         }
     }
 }

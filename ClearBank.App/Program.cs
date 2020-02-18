@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.FileExtensions;
 using Microsoft.Extensions.Configuration.Json;
 using ClearBank.Infrastructure.Repository.Backup;
+using ClearBank.Domain.Types.PaymentRequests;
 
 namespace ClearBank.App
 {
@@ -31,6 +32,8 @@ namespace ClearBank.App
             var logger = serviceProvider.GetService<ILogger<Program>>();
             logger.LogDebug("Starting application");
 
+            var paymentService = serviceProvider.GetService<IPaymentService>();
+            paymentService.MakePayment(new MakeFasterPaymentRequest("1","1",100, DateTime.Now));
             /*
             IAccountRepository accountRepository = serviceProvider.GetService<IAccountRepository>();
 

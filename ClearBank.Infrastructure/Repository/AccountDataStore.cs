@@ -7,7 +7,7 @@ namespace ClearBank.Infrastructure.Repository
         public Account GetAccount(string accountNumber)
         {
             // Access database to retrieve account, code removed for brevity 
-            return new Account("ACC_001", 10, AccountStatus.Live, AllowedPaymentSchemes.Bacs);
+            return new Account("ACC_001", 10, AccountStatus.Live, 1);
         }
 
         public void UpdateAccount(Account account)

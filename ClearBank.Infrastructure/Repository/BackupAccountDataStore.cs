@@ -8,7 +8,7 @@ namespace ClearBank.Infrastructure.Repository.Backup
         public Account GetAccount(string accountNumber)
         {
             // Access backup data base to retrieve account, code removed for brevity 
-            return new Account("BACC_001", 10, AccountStatus.Live, AllowedPaymentSchemes.Bacs);
+            return new Account("BACC_001", 10, AccountStatus.Live, 1 );
 
         }
 
