@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Xunit;
-using ClearBank.DeveloperTest.Types;
+using ClearBank.Domain.Types;
 using ClearBank.Domain.Types.PaymentRequests;
 
 namespace ClaerBank.UnitTests

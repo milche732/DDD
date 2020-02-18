@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ClearBank.DeveloperTest.Types
+namespace ClearBank.Domain.Types
 {
     public abstract class MakePaymentRequest
     {

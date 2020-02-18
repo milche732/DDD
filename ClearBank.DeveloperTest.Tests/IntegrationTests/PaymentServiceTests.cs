@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using Xunit;
-using ClearBank.DeveloperTest.Types;
+using ClearBank.Domain.Types;
 using ClearBank.Domain.Types.PaymentRequests;
-using ClearBank.DeveloperTest.Services;
+using ClearBank.Domain.Services;
 using ClearBank.Infrastructure.Repository;
 using Moq;
 

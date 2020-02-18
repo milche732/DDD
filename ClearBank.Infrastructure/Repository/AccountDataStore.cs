@@ -1,4 +1,4 @@
-﻿using ClearBank.DeveloperTest.Types;
+﻿using ClearBank.Domain.Types;
 using System.Collections.Generic;
 using System.Linq;
 namespace ClearBank.Infrastructure.Repository

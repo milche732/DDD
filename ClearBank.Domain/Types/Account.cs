@@ -1,9 +1,11 @@
 ﻿using ClearBank.Domain.Exceptions;
+using ClearBank.Domain.SeedWork;
+using Moneybox.Domain.SeedWork;
 using System;
 
-namespace ClearBank.DeveloperTest.Types
+namespace ClearBank.Domain.Types
 {
-    public class Account
+    public class Account: Entity, IAggregateRoot
     {
         public string _accountNumber;
         public decimal _balance;

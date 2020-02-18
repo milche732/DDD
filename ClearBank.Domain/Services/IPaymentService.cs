@@ -1,6 +1,6 @@
-﻿using ClearBank.DeveloperTest.Types;
+﻿using ClearBank.Domain.Types;
 
-namespace ClearBank.DeveloperTest.Services
+namespace ClearBank.Domain.Services
 {
     public interface IPaymentService
     {

@@ -1,4 +1,4 @@
-﻿using ClearBank.DeveloperTest.Services;
+﻿using ClearBank.Domain.Services;
 using ClearBank.Infrastructure.Repository;
 using Microsoft.Extensions.DependencyInjection;
 using System;

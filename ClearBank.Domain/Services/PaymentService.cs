@@ -1,8 +1,8 @@
-﻿using ClearBank.DeveloperTest.Types;
+﻿using ClearBank.Domain.Types;
 using ClearBank.Infrastructure.Repository;
 using System.Configuration;
 
-namespace ClearBank.DeveloperTest.Services
+namespace ClearBank.Domain.Services
 {
 
     public class PaymentService : IPaymentService
