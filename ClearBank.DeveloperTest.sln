@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClearBank.DeveloperTest", "ClearBank.DeveloperTest\ClearBank.DeveloperTest.csproj", "{5B180045-B13B-443E-82AF-E6F1D1247111}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClearBank.DeveloperTest.Tests", "ClearBank.DeveloperTest.Tests\ClearBank.DeveloperTest.Tests.csproj", "{A3CA1845-E8EC-4B29-8E5C-F1E69CF73F25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClearBank.DeveloperTest.Tests", "ClearBank.DeveloperTest.Tests\ClearBank.DeveloperTest.Tests.csproj", "{A3CA1845-E8EC-4B29-8E5C-F1E69CF73F25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClearBank.Domain", "ClearBank.Domain\ClearBank.Domain.csproj", "{D38CAB96-07C6-4293-881C-46C8C68549E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClearBank.Domain", "ClearBank.Domain\ClearBank.Domain.csproj", "{D38CAB96-07C6-4293-881C-46C8C68549E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClearBank.Infrastructure", "ClearBank.Infrastructure\ClearBank.Infrastructure.csproj", "{10564C99-1DC6-4745-AC10-47CDC13A50E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClearBank.Infrastructure", "ClearBank.Infrastructure\ClearBank.Infrastructure.csproj", "{10564C99-1DC6-4745-AC10-47CDC13A50E6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClearBank.App", "ClearBank.App\ClearBank.App.csproj", "{587BBAF2-0FF3-4492-AA85-9D96B36C5FF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClearBank.App", "ClearBank.App\ClearBank.App.csproj", "{587BBAF2-0FF3-4492-AA85-9D96B36C5FF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5B180045-B13B-443E-82AF-E6F1D1247111}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5B180045-B13B-443E-82AF-E6F1D1247111}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5B180045-B13B-443E-82AF-E6F1D1247111}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5B180045-B13B-443E-82AF-E6F1D1247111}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A3CA1845-E8EC-4B29-8E5C-F1E69CF73F25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A3CA1845-E8EC-4B29-8E5C-F1E69CF73F25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3CA1845-E8EC-4B29-8E5C-F1E69CF73F25}.Release|Any CPU.ActiveCfg = Release|Any CPU
