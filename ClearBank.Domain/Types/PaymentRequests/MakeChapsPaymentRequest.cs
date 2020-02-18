@@ -5,9 +5,9 @@ using System.Text;
 
 namespace ClearBank.Domain.Types.PaymentRequests
 {
-    public class BacsPaymentRequest: MakePaymentRequest
+    public class MakeChapsPaymentRequest: MakePaymentRequest
     {
-        public BacsPaymentRequest(string creditAccountNumber, string debtAccountNumber, decimal amount, DateTime paymentDate) : base(PaymentScheme.ChapsSchema, creditAccountNumber, debtAccountNumber, amount, paymentDate)
+        public MakeChapsPaymentRequest(string creditAccountNumber, string debtAccountNumber, decimal amount, DateTime paymentDate) : base(PaymentScheme.ChapsSchema, creditAccountNumber, debtAccountNumber, amount, paymentDate)
         {
 
         }

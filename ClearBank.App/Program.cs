@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration.FileExtensions;
 using Microsoft.Extensions.Configuration.Json;
 using ClearBank.Infrastructure.Repository.Backup;
 using ClearBank.Domain.Types.PaymentRequests;
+using System.IO;
 
 namespace ClearBank.App
 {
@@ -15,9 +16,11 @@ namespace ClearBank.App
     {
         static void Main(string[] args)
         {
-            IConfiguration config = new ConfigurationBuilder()
-              .AddJsonFile("appsettings.json", true, true)
-              .Build();
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+
+            var config = builder.Build();
 
             var serviceProvider = new ServiceCollection()
            .AddReposiory(config)
@@ -33,20 +36,18 @@ namespace ClearBank.App
             logger.LogDebug("Starting application");
 
             var paymentService = serviceProvider.GetService<IPaymentService>();
-            paymentService.MakePayment(new MakeFasterPaymentRequest("1","1",100, DateTime.Now));
-            /*
-            IAccountRepository accountRepository = serviceProvider.GetService<IAccountRepository>();
+            var account = serviceProvider.GetService<IAccountRepository>().GetAccount("ACC_001");
 
-            var fromAccount = accountRepository.GetAccountById(Guid.Parse("7511ca49-059e-4eae-9c8f-caf29bc61063"));
-            var toAccount = accountRepository.GetAccountById(Guid.Parse("b3388bd0-de5d-40aa-8582-4571b4223d36"));
-            Console.WriteLine("Send 10");
-            Console.WriteLine("From: " + fromAccount.ToString());
-            Console.WriteLine("To: " + toAccount.ToString());
-            var transferMoney = serviceProvider.GetService<ITransferMoney>();
+            Console.WriteLine($"Account Before: {account}");
 
-            transferMoney.Execute(fromAccount.Id, toAccount.Id, 10);
+            var payment = new MakeFasterPaymentRequest("1", "ACC_001", 100, DateTime.Now);
 
-            Console.WriteLine("Hello World!");*/
+            var result = paymentService.MakePayment(payment);
+
+            Console.WriteLine($"Making Payment: {payment}");
+            Console.WriteLine($"Payment: {result.Success}");
+            Console.WriteLine($"Account After: {account}");
+
         }
 
      
@@ -55,8 +56,6 @@ namespace ClearBank.App
     public static class ProgramExtension{
         public static IServiceCollection AddReposiory(this IServiceCollection services, IConfiguration configuration)
         {
-            var subscriptionClientName = configuration["AppSettings"];
-
             if (configuration.GetValue<string>("DataStoreType") == "Backup")
             {
                 services.AddTransient<IAccountRepository, AccountDataStore>();

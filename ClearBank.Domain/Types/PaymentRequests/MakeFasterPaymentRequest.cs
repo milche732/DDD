@@ -15,7 +15,7 @@ namespace ClearBank.Domain.Types.PaymentRequests
 
         public override bool IsApplicableTo(Account account)
         {
-           return  account.IsAllowedPaymentScheme(this.PaymentScheme) &&  account.Balance >= Amount;
+           return  account.IsAllowedPaymentScheme(this.PaymentScheme) &&  account.Balance >= GetAmount();
         }
     }
 }

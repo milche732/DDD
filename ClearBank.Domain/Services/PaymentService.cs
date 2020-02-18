@@ -15,7 +15,7 @@ namespace ClearBank.DeveloperTest.Services
         }
         public MakePaymentResult MakePayment(MakePaymentRequest request)
         {
-            Account account = this.accountRepository.GetAccount(request.DebtorAccountNumber);
+            Account account = this.accountRepository.GetAccount(request.GetDebtorAccountNumber());
 
             var result = new MakePaymentResult();
 

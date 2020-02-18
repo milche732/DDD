@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClearBank.Domain.Exceptions;
+using System;
 
 namespace ClearBank.DeveloperTest.Types
 {
@@ -27,15 +28,15 @@ namespace ClearBank.DeveloperTest.Types
             _accountNumber = accountNumber;
             _balance = balance;
             _status = status;
-            _allowedPaymentSchemes = new PaymentScheme(allowedPaymentSchemes, accountNumber + "_scheme");
+            _allowedPaymentSchemes = PaymentScheme.Create(allowedPaymentSchemes, accountNumber + "_scheme");
         }
         public void ProcessPayment(MakePaymentRequest request)
         {
             if (!request.IsApplicableTo(this))
             {
-                throw new InvalidOperationException("Cannot process payment.");
+                throw new InvalidPaymentOperationException("Cannot process payment.");
             }
-            _balance -= request.Amount;
+            _balance -= request.GetAmount();
         }
 
         public bool CanProcessPayment(MakePaymentRequest request)
@@ -46,6 +47,11 @@ namespace ClearBank.DeveloperTest.Types
         public bool IsAllowedPaymentScheme(PaymentScheme paymentScheme)
         {
             return this._allowedPaymentSchemes.Has(paymentScheme);
+        }
+
+        public override string ToString()
+        {
+            return $"<{AccountNumber}, {Balance}, {Status}>";
         }
     }
 }

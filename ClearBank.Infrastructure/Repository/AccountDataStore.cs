@@ -1,13 +1,17 @@
 ﻿using ClearBank.DeveloperTest.Types;
-
+using System.Collections.Generic;
+using System.Linq;
 namespace ClearBank.Infrastructure.Repository
 {
     public class AccountDataStore: IAccountRepository
     {
+        private static List<Account> list = new List<Account>
+        {
+            new Account("ACC_001", 500m, AccountStatus.Live, 1)
+        };
         public Account GetAccount(string accountNumber)
         {
-            // Access database to retrieve account, code removed for brevity 
-            return new Account("ACC_001", 10, AccountStatus.Live, 1);
+            return list.Where(x => x.AccountNumber == accountNumber).FirstOrDefault();
         }
 
         public void UpdateAccount(Account account)
