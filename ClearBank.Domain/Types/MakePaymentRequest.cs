@@ -4,26 +4,16 @@ namespace ClearBank.Domain.Types
 {
     public abstract class MakePaymentRequest
     {
-        public string CreditorAccountNumber { get; private set; }
-
-        public string _debtorAccountNumber { get;}
-
-        public decimal _amount;
-
-
-        //that is needed to moq request, otherwise we need to implement IMakePaymentRequest
-        public virtual decimal GetAmount()
-        {
-            return _amount;
-        }
-        public virtual string GetDebtorAccountNumber()
-        {
-            return _debtorAccountNumber;
-        }
-
         public DateTime PaymentDate { get; private set; }
 
         public PaymentScheme PaymentScheme { get; private set; }
+
+        public string CreditorAccountNumber { get; private set; }
+
+        private string _debtorAccountNumber { get;}
+
+        private decimal _amount;
+
 
         public MakePaymentRequest() { }
 
@@ -35,6 +25,17 @@ namespace ClearBank.Domain.Types
             PaymentDate = paymentDate;
             PaymentScheme = paymentScheme;
         }
+
+        //that is needed to moq Amount, otherwise we need to implement IMakePaymentRequest, but was mentioned to not change signature of IPaymentService 
+        public virtual decimal GetAmount()
+        {
+            return _amount;
+        }
+        public virtual string GetDebtorAccountNumber()
+        {
+            return _debtorAccountNumber;
+        }
+
 
         public abstract bool IsApplicableTo(Account account);
 
